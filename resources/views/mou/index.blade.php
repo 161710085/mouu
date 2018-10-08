@@ -13,7 +13,9 @@
 </div>
 <div class="panel-body">
 <p> <a class="btn btn-primary" href="{{ route('mou.create') }}">Tambah</a> </p>
+<div class="table-responsive">
 {!! $html->table(['class'=>'table-striped']) !!}
+</div>
 </div>
 </div>
 </div>

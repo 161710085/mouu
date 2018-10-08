@@ -79,7 +79,8 @@ return view('mou.index', compact('html'));
         'mulai' => 'required|',
         'berakhir' => 'required|',
         'manfaat' => 'required|',
-        'kerjasama' => 'required|',]);
+        'kerjasama' => 'required|'
+        ]);
         $mou = mou::create($request->all());
         Session::flash("flash_notification", [
             "level"=>"success",
@@ -107,7 +108,7 @@ return view('mou.index', compact('html'));
      * @param  \App\mou  $mou
      * @return \Illuminate\Http\Response
      */
-    public function edit(mou $mou)
+    public function edit( $id)
     {
         $mou = mou::find($id);
         return view('mou.edit')->with(compact('mou'));
@@ -121,34 +122,34 @@ return view('mou.index', compact('html'));
      * @param  \App\mou  $mou
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, mou $mou)
+    public function update(Request $request,  $id)
     {
-        $this->validate($request, ['jenismou' => 'required|unique:jenis_instansis,jenismou,'. $id,
-        'moulevel' => 'required|unique:jenis_instansis,moulevel,'. $id,
-        'pjk' => 'required|unique:jenis_instansis,pjk,'. $id,
-        'nopjk' => 'required|unique:jenis_instansis,nopjk,'. $id,
-        'pji' => 'required|unique:jenis_instansis,pji,'. $id,
-        'nopji' => 'required|unique:jenis_instansis,nopji,'. $id,
-        'pejabatpenandatangan' => 'required|unique:jenis_instansis,pejabatpenandatangan,'. $id,
-        'mulai' => 'required|unique:jenis_instansis,mulai,'. $id,
-        'berakhir' => 'required|unique:jenis_instansis,berakhir,'. $id,
-        'manfaat' => 'required|unique:jenis_instansis,manfaat,'. $id,
-        'kerjasama' => 'required|unique:jenis_instansis,kerjasama,'. $id]);
-$jenis_instansi = jenis_instansi::find($id);
-$jenis_instansi->update($request->only('jenismou'));
-$jenis_instansi->update($request->only('moulevel'));
-$jenis_instansi->update($request->only('pjk'));
-$jenis_instansi->update($request->only('nopjk'));
-$jenis_instansi->update($request->only('pji'));
-$jenis_instansi->update($request->only('nopji'));
-$jenis_instansi->update($request->only('pejabatpenandatangan'));
-$jenis_instansi->update($request->only('mulai'));
-$jenis_instansi->update($request->only('berakhir'));
-$jenis_instansi->update($request->only('manfaat'));
-$jenis_instansi->update($request->only('kerjasama'));
+        $this->validate($request, ['jenismou' => 'required|unique:mous,jenismou,'. $id,
+        'moulevel' => 'required|unique:mous,moulevel,'. $id,
+        'pjk' => 'required|unique:mous,pjk,'. $id,
+        'nopjk' => 'required|unique:mous,nopjk,'. $id,
+        'pji' => 'required|unique:mous,pji,'. $id,
+        'nopji' => 'required|unique:mous,nopji,'. $id,
+        'pejabatpenandatangan' => 'required|unique:mous,pejabatpenandatangan,'. $id,
+        'mulai' => 'required|unique:mous,mulai,'. $id,
+        'berakhir' => 'required|unique:mous,berakhir,'. $id,
+        'manfaat' => 'required|unique:mous,manfaat,'. $id,
+        'kerjasama' => 'required|unique:mous,kerjasama,'. $id]);
+$mou = mou::find($id);
+$mou->update($request->only('jenismou'));
+$mou->update($request->only('moulevel'));
+$mou->update($request->only('pjk'));
+$mou->update($request->only('nopjk'));
+$mou->update($request->only('pji'));
+$mou->update($request->only('nopji'));
+$mou->update($request->only('pejabatpenandatangan'));
+$mou->update($request->only('mulai'));
+$mou->update($request->only('berakhir'));
+$mou->update($request->only('manfaat'));
+$mou->update($request->only('kerjasama'));
 Session::flash("flash_notification", [
 "level"=>"success",
-"message"=>"Berhasil menyimpan $jenis_instansi->name"
+"message"=>"Berhasil menyimpan $mou->name"
 ]);
 return redirect()->route('mou.index');
     
@@ -160,8 +161,14 @@ return redirect()->route('mou.index');
      * @param  \App\mou  $mou
      * @return \Illuminate\Http\Response
      */
-    public function destroy(mou $mou)
+    public function destroy( $id)
     {
-        //
+        mou::destroy($id);
+        Session::flash("flash_notification", [
+        "level"=>"success",
+        "message"=>"Jenis Instansi berhasil dihapus"
+        ]);
+        return redirect()->route('mou.index');
+                 //
     }
 }
