@@ -14,6 +14,8 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{asset('css/jquery.dataTables.css')}}" rel="stylesheet">
 <link href="{{asset('css/dataTables.bootstrap.css')}}" rel="stylesheet">
+<link href="{{asset('css/selectize.css')}}" rel="stylesheet">
+<link href="{{asset('css/selectize.bootstrap3.css')}}" rel="stylesheet">
 
 </head>
 <body>
@@ -41,6 +43,7 @@
                     <ul class="nav navbar-nav">
                         &nbsp;
                         <li><a href="{{ route('jenisinstansi.index') }}">Jenis Instansi</a></li>
+                        <li><a href="{{ route('instansi.index') }}">Instansi</a></li>
                         <li><a href="{{ route('mou.index') }}">Mou</a></li>
                     
                     </ul>
@@ -82,6 +85,8 @@
     </div>
 
     <!-- Scripts -->
+    <script src="{{asset('js/selectize.min.js')}}"></script>
+
     <script src="{{ asset('js/app.js') }}"></script>
         <script src="{{asset('js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('js/dataTables.bootstrap.min.js')}}"></script>

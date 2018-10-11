@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class instansi extends Model
 {
     protected $table ='instansis';
-    protected $fillable = ['namainstansi','alamat','kota','provinsi','kodepos','namapemimpin','jabatan','nope','email','web','fake','jenisinstansi_id'];
+    protected $fillable = ['namainstansi','jenis_instansi_id',
+    'alamat','kota','provinsi','kodepos','namapimpinan','jabatan','nope','email','web','fax'];
     public $timestamps=true;
     public function instansi()
     {

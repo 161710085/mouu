@@ -20,4 +20,5 @@ Auth::routes();
 Route::group(['prefix'=>'admin', 'middleware'=>['auth', 'role:admin']], function () {
   Route::resource('jenisinstansi','JenisInstansiController');
   Route::resource('mou','MouController'); 
+  Route::resource('instansi','InstansiController'); 
 });
