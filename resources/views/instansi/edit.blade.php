@@ -13,8 +13,8 @@
 <h2 class="panel-title">instansi</h2>
 </div>
 <div class="panel-body">
-{!! Form::model($instansi, ['url' => route('instansi.update', $instansi->id),
-'method'=>'put', 'class'=>'form-horizontal']) !!}
+{!! Form::model($instansi, ['url' => route('instansi.update', $instansi->id),'method'=>'put', 'class'=>'form-horizontal']) !!}
+
 @include('instansi._form')
 {!! Form::close() !!}
 </div>

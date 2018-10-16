@@ -23,6 +23,8 @@ class InstansiController extends Controller
     public function index(Request $request, Builder $builder)
 { if ($request->ajax()) {
     $instansi = instansi::with('jenis_instansi');
+    // $instansi = instansi::select(['id','namainstansi','alamat','kota','provinsi','kodepos',
+    // 'namapimpinan','jabatan','nope','email','web','fax']);
     return Datatables::of($instansi)
             ->addColumn('action', function ($instansi) {  
                 return view('datatable._action', [
@@ -36,7 +38,7 @@ class InstansiController extends Controller
 }
 $html = $builder
     ->addColumn(['data' => 'namainstansi', 'name'=>'namainstansi','title'=>'Nama Instansi'])
-    ->addColumn(['data' => 'jenis_instansi.name', 'name'=>'jenis_instansi.name', 'title'=>'Jenis Instansi'])
+    ->addColumn(['data' => 'jenis_instansi.name', 'name'=>'jenis_instansi.name', 'title'=>'Jenis'])
     ->addColumn(['data' => 'alamat', 'name'=>'alamat','title'=>'Alamat'])
     ->addColumn(['data' => 'kota', 'name'=>'kota','title'=>'Kota'])
     ->addColumn(['data' => 'provinsi', 'name'=>'provinsi','title'=>'Provinsi'])
@@ -111,11 +113,13 @@ return view('instansi.index', compact('html'));
      * @param  \App\instansi  $instansi
      * @return \Illuminate\Http\Response
      */
-    public function edit(instansi $instansi)
+    public function edit( $id)
     {
         
-        $instansi = instansi::findOrFail($instansi->id);
-        return view('instansi.edit')->with(compact('instansi'));
+        $instansi = instansi::findOrFail($id);
+        $jenis_instansi = jenis_instansi::all();
+        $jenis_instansiselect = jenis_instansi::findOrFail($id)->jenis_instansi_id;
+        return view('instansi.edit')->with(compact('instansi','jenis_instansi'));
     }
 
     /**
@@ -125,33 +129,22 @@ return view('instansi.index', compact('html'));
      * @param  \App\instansi  $instansi
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, instansi $instansi)
+    public function update(Request $request,  $id)
     {
-        $this->validate($request, ['namainstansi' => 'required|unique:instansis,namainstansi,'. $id,
-        'jenisinstansi.id' => 'required|unique:instansis,jenisinstansi.id,'. $id,
-        'alamat' => 'required|unique:instansis,alamat,'. $id,
-        'kota' => 'required|unique:instansis,kota,'. $id,
-        'provinsi' => 'required|unique:instansis,provinsi,'. $id,
-        'kodepos' => 'required|unique:instansis,kodepos,'. $id,
-        'namapimpinan' => 'required|unique:instansis,namapimpinan,'. $id,
-        'jabatan' => 'required|unique:instansis,jabatan,'. $id,
-        'nope' => 'required|unique:instansis,nope,'. $id,
-        'email' => 'required|unique:instansis,email,'. $id,
-        'web' => 'required|unique:instansis,web,'. $id,
-        'fax' => 'required|unique:instansis,fax,'. $id]);
-$instansi = instansi::find($id);
-$instansi->update($request->only('namainstansi'));
-$instansi->update($request->only('jenisinstansi.id'));
-$instansi->update($request->only('alamat'));
-$instansi->update($request->only('kota'));
-$instansi->update($request->only('provinsi'));
-$instansi->update($request->only('kodepos'));
-$instansi->update($request->only('namapimpinan'));
-$instansi->update($request->only('jabatan'));
-$instansi->update($request->only('No Telepon'));
-$instansi->update($request->only('email'));
-$instansi->update($request->only('web'));
-$instansi->update($request->only('fax'));
+        $this->validate($request, ['namainstansi' => 'required',
+        'jenis_instansi_id' => 'required',
+        'alamat' => 'required',
+        'kota' => 'required',
+        'provinsi' => 'required',
+        'kodepos' => 'required',
+        'namapimpinan' => 'required',
+        'jabatan' => 'required',
+        'nope' => 'required',
+        'email' => 'required',
+        'web' => 'required',
+        'fax' => 'required',]);
+        $instansi = instansi::find($id);
+        $instansi->update($request->all());
 Session::flash("flash_notification", [
 "level"=>"success",
 "message"=>"Berhasil menyimpan $instansi->name"

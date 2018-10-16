@@ -10,7 +10,7 @@ class jenis_instansi extends Model
     protected $fillable = ['name','status'];
     public $timestamps = true;
 
-    public function master()
+    public function instansi()
     {
         return $this->hasMany('App\instansi','instansi_id');
     }

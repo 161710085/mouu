@@ -10,9 +10,9 @@ class instansi extends Model
     protected $fillable = ['namainstansi','jenis_instansi_id',
     'alamat','kota','provinsi','kodepos','namapimpinan','jabatan','nope','email','web','fax'];
     public $timestamps=true;
-    public function instansi()
+    public function jenis_instansi()
     {
-        return $this->belongsTo('App\jenis_instansi','instansi_id');
+        return $this->belongsTo('App\jenis_instansi','jenis_instansi_id');
     }
    
 }
