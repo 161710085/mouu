@@ -22,3 +22,4 @@ Route::group(['prefix'=>'admin', 'middleware'=>['auth', 'role:admin']], function
   Route::resource('mou','MouController'); 
   Route::resource('instansi','InstansiController'); 
 });
+Route::get('auth/verify/{token}', 'Auth\RegisterController@verify');

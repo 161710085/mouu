@@ -21,7 +21,7 @@ class JenisInstansiController extends Controller
     
     public function index(Request $request, Builder $builder)
 { if ($request->ajax()) {
-   $jenis_instansi = jenis_instansi::select(['id', 'name','status']);
+   $jenis_instansi = jenis_instansi::select(['id', 'name',]);
     return Datatables::of($jenis_instansi)
             ->addColumn('action', function ($jenis_instansi) {  
                 return view('datatable._action', [
@@ -35,7 +35,7 @@ class JenisInstansiController extends Controller
 }
 $html = $builder
     ->addColumn(['data' => 'name', 'name'=>'name','title'=>'Jenis Instansi'])
-    ->addColumn(['data' => 'status', 'name'=>'status','title'=>'Status'])
+
     ->addColumn(['data' => 'action', 'name'=>'action', 'title'=>'', 'orderable'=>false,
                  'searchable'=>false]);
 return view('jenis_instansi.index', compact('html'));
@@ -60,8 +60,7 @@ return view('jenis_instansi.index', compact('html'));
      */
     public function store(Request $request)
     {
-        $this->validate($request, ['name' => 'required|',
-        'status' => 'required|']);
+        $this->validate($request, ['name' => 'required|']);
         $jenis_instansi = jenis_instansi::create($request->all());
         Session::flash("flash_notification", [
             "level"=>"success",
@@ -107,7 +106,7 @@ return view('jenis_instansi.edit')->with(compact('jenis_instansi'));
         'status' => 'required|unique:jenis_instansis,status,'. $id]);
 $jenis_instansi = jenis_instansi::find($id);
 $jenis_instansi->update($request->only('name'));
-$jenis_instansi->update($request->only('status'));
+
 Session::flash("flash_notification", [
 "level"=>"success",
 "message"=>"Berhasil menyimpan $jenis_instansi->name"

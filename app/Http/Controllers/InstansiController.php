@@ -49,6 +49,7 @@ $html = $builder
     ->addColumn(['data' => 'email', 'name'=>'email','title'=>'Email'])
     ->addColumn(['data' => 'web', 'name'=>'web','title'=>'Web'])
     ->addColumn(['data' => 'fax', 'name'=>'fax','title'=>'Fax'])
+    ->addColumn(['data' => 'status', 'name'=>'status','title'=>'Status'])
     ->addColumn(['data' => 'action', 'name'=>'action', 'title'=>'', 'orderable'=>false,
                  'searchable'=>false]);
 return view('instansi.index', compact('html'));
@@ -84,6 +85,7 @@ return view('instansi.index', compact('html'));
         'email' => 'required|',
         'web' => 'required|',
         'fax' => 'required|',
+        'status' => 'required|'
 
         ]);
         $instansi = instansi::create($request->all());
@@ -142,7 +144,8 @@ return view('instansi.index', compact('html'));
         'nope' => 'required',
         'email' => 'required',
         'web' => 'required',
-        'fax' => 'required',]);
+        'fax' => 'required',
+        'status' => 'required',]);
         $instansi = instansi::find($id);
         $instansi->update($request->all());
 Session::flash("flash_notification", [

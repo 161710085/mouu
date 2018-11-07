@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class jenis_instansi extends Model
 {
     protected $table = 'jenis_instansis';
-    protected $fillable = ['name','status'];
+    protected $fillable = ['name'];
     public $timestamps = true;
 
     public function instansi()

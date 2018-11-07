@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\instansi;    
 use Illuminate\Http\Request;
+use Laratrust\LaratrustFacade as Laratrust;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,16 @@ class HomeController extends Controller
      */
     public function index()
     {
+        if (Laratrust::hasRole('admin')) return $this->adminDashboard();
         return view('home');
     }
+    protected function adminDashboard()
+{
+    $instansi = [];
+//  $jenis_instansi = [];
+foreach (instansi::all() as $instansi) {
+//  array_push($instansi, $instansi->name);
+ }
+ return view('dashboard.admin', compact('instansi'));
+}
 }

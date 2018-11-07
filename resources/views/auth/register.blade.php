@@ -36,6 +36,13 @@
 {!! Form::password('password_confirmation', ['class'=>'form-control']) !!}
 {!! $errors->first('password_confirmation', '<p class="help-block">:message</p>') !!}
 </div>
+
+<div class="form-group{{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
+<div class="col-md-6 col-md-offset-4">
+{!! app('captcha')->display() !!}
+{!! $errors->first('g-recaptcha-response', '<p class="help-block">:message</p>') !!}
+</div><br>
+</div>
 </div>
 <div class="form-group">
 <div class="col-md-6 col-md-offset-4">
@@ -44,6 +51,8 @@
 </button>
 </div>
 </div>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>
 {!! Form::close() !!}
                 </div>
             </div>

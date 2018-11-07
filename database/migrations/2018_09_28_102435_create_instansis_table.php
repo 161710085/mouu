@@ -17,7 +17,7 @@ class CreateInstansisTable extends Migration
             $table->increments('id');
             $table->string('namainstansi');
             $table->unsignedInteger('jenis_instansi_id');
-            $table->foreign('jenis_instansi_id')->references('id')->on('jenis_instansis')->ondelete('cascade');      
+            $table->foreign('jenis_instansi_id')->references('id')->on('jenis_instansis')->onUpdate('cascade')->onDelete('cascade');      
             $table->string('alamat');
             $table->string('kota');
             $table->string('provinsi');
@@ -28,7 +28,7 @@ class CreateInstansisTable extends Migration
             $table->string('email');
             $table->string('web');
             $table->string('fax');
-           
+            $table->string('status');
             $table->timestamps();
  });
     }

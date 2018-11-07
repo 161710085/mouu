@@ -16,7 +16,7 @@ class CreateJenisInstansisTable extends Migration
         Schema::create('jenis_instansis', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('status');
+
             $table->timestamps();
         });
     }

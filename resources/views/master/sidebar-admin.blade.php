@@ -11,7 +11,7 @@
                     <a href="{{route ('jenisinstansi.index')}}" class="waves-effect"><i class="fa fa-fort-awesome fa-fw" aria-hidden="true"></i><span class="hide-menu">Jenis Instansi</span></a>
                 </li>
                 <li>
-                    <a href="{{route ('mou.index')}}" class="waves-effect"><i class="fa fa-building fa-fw" aria-hidden="true"></i><span class="hide-menu">Merk</span></a>
+                    <a href="{{route ('mou.index')}}" class="waves-effect"><i class="fa fa-building fa-fw" aria-hidden="true"></i><span class="hide-menu">Mou</span></a>
                 </li>
                 <hr>
                 <li>
